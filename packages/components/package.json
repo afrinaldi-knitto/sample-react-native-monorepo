@@ -1,0 +1,14 @@
+{
+  "name": "@packages/components",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*",
+    "@shopify/flash-list": "<2.0.0"
+  }
+}
