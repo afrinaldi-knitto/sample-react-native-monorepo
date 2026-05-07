@@ -10,8 +10,7 @@
     "one:build": "pnpm --filter @app/one build",
     "two:start": "pnpm --filter @app/two start",
     "two:android": "pnpm --filter @app/two android",
-    "two:build": "pnpm --filter @app/two build",
-    "test": "echo \"No root tests configured\""
+    "two:build": "pnpm --filter @app/two build"
   },
   "author": "",
   "license": "ISC",

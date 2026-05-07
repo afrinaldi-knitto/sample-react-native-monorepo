@@ -1,25 +1,20 @@
 import React, { Activity } from 'react';
 import { View, Button, StyleSheet, Text } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import {
-  createNativeStackNavigator,
-  NativeStackScreenProps,
-} from '@react-navigation/native-stack';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Provider, useDispatch, useSelector } from 'react-redux';
 import { FlashList } from '@shopify/flash-list';
 import { InputForm } from '@packages/components';
 import { addForm, allForms, FormState, store } from '@workspace/packages/redux';
+import { NavStack, ScreenProps } from '@workspace/navigations';
 
 type RootStackParamList = {
   Form: undefined;
   Report: undefined;
 };
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
-type FormRouteProps = NativeStackScreenProps<RootStackParamList, 'Form'>;
+type Props = ScreenProps<RootStackParamList, 'Form'>;
 
-function FormRoute({ navigation }: FormRouteProps) {
+function FormRoute({ navigation }: Props) {
   const dispatch = useDispatch();
 
   return (
@@ -80,12 +75,16 @@ function ReportRoute() {
 function App() {
   return (
     <Provider store={store}>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Form" component={FormRoute} />
-          <Stack.Screen name="Report" component={ReportRoute} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <NavStack<RootStackParamList>
+        screens={{
+          Form: {
+            component: FormRoute,
+          },
+          Report: {
+            component: ReportRoute,
+          },
+        }}
+      />
     </Provider>
   );
 }

@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
+    "android": "react-native run-android --port 8082",
     "build": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && cd android && gradlew assembleRelease",
     "ios": "react-native run-ios",
     "lint": "eslint .",
@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@packages/components": "workspace:*",
+    "@workspace/navigations": "workspace:*",
     "@workspace/packages/redux": "workspace:*",
     "@react-native/new-app-screen": "0.85.2",
     "@react-navigation/native": "^7.2.2",
