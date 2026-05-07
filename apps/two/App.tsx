@@ -9,12 +9,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Provider, useDispatch, useSelector } from 'react-redux';
 import { FlashList } from '@shopify/flash-list';
 import { InputForm } from '@packages/components';
-import { store } from '@workspace/packages/redux';
-import {
-  addForm,
-  allForms,
-  type FormState,
-} from '@workspace/packages/redux/src/slice/form-slice';
+import { addForm, allForms, FormState, store } from '@workspace/packages/redux';
 
 type RootStackParamList = {
   Form: undefined;

@@ -1,12 +1,10 @@
 import { StyleSheet, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { ItemList } from "@packages/components";
 
 export function DetailScreen({ sourceApp }: { sourceApp: string }) {
   return (
     <SafeAreaView style={styles.container}>
       <Text>Open from {sourceApp}</Text>
-      <ItemList />
     </SafeAreaView>
   );
 }
