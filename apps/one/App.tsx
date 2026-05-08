@@ -1,8 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { InputForm } from '@packages/components';
 
 type RootStackParamList = {
@@ -15,9 +14,9 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function FormRoute() {
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <InputForm onSubmit={() => {}} />
-    </SafeAreaView>
+    </View>
   );
 }
 

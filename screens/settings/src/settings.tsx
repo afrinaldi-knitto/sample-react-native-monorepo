@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 
-export function DetailScreen({ sourceApp }: { sourceApp: string }) {
+export function SettingsScreen() {
   return (
     <View style={styles.container}>
-      <Text>Open from {sourceApp}</Text>
+      <Text>Settings</Text>
     </View>
   );
 }
@@ -11,6 +11,7 @@ export function DetailScreen({ sourceApp }: { sourceApp: string }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    gap: 16,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

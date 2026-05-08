@@ -1,30 +1,50 @@
 import React, { Activity } from 'react';
 import { View, Button, StyleSheet, Text } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { Provider, useDispatch, useSelector } from 'react-redux';
 import { FlashList } from '@shopify/flash-list';
 import { InputForm } from '@packages/components';
 import { addForm, allForms, FormState, store } from '@workspace/packages/redux';
-import { NavStack, ScreenProps } from '@workspace/navigations';
+import { NavBottomTab, NavStack, ScreenProps } from '@workspace/navigations';
+import { HomeScreen } from '@screens/home';
+import { FavoritesScreen } from '@screens/favorites';
+import { SettingsScreen } from '@screens/settings';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 type RootStackParamList = {
   Form: undefined;
   Report: undefined;
+  Main: undefined;
 };
 
 type Props = ScreenProps<RootStackParamList, 'Form'>;
+
+type MainTabParamList = {
+  Home: undefined;
+  Favorites: undefined;
+  Settings: undefined;
+};
 
 function FormRoute({ navigation }: Props) {
   const dispatch = useDispatch();
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.buttonContainer}>
-        <Button
-          color={'black'}
-          title="Report"
-          onPress={() => navigation.navigate('Report')}
-        />
+        <View style={styles.viewGrow}>
+          <Button
+            color={'black'}
+            title="Report"
+            onPress={() => navigation.navigate('Report')}
+          />
+        </View>
+
+        <View style={styles.viewGrow}>
+          <Button
+            color={'black'}
+            title="Main"
+            onPress={() => navigation.navigate('Main')}
+          />
+        </View>
       </View>
       <InputForm
         onSubmit={value => {
@@ -37,7 +57,7 @@ function FormRoute({ navigation }: Props) {
           );
         }}
       />
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -55,7 +75,7 @@ function ReportRoute() {
   const forms = useSelector(allForms);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <Activity mode={forms.length === 0 ? 'visible' : 'hidden'}>
         <Text style={styles.text}>Belum ada data</Text>
       </Activity>
@@ -68,23 +88,59 @@ function ReportRoute() {
           keyExtractor={item => item.id}
         />
       </Activity>
-    </SafeAreaView>
+    </View>
+  );
+}
+
+function MainRoute() {
+  return (
+    <NavBottomTab<MainTabParamList>
+      screens={{
+        Home: {
+          component: HomeScreen,
+        },
+        Favorites: {
+          component: FavoritesScreen,
+        },
+        Settings: {
+          component: SettingsScreen,
+        },
+      }}
+      screenOptions={{
+        headerShown: false,
+        tabBarIconStyle: {
+          display: 'none',
+        },
+        tabBarLabelStyle: {
+          flex: 1,
+          verticalAlign: 'middle',
+          fontSize: 12,
+        },
+      }}
+    />
   );
 }
 
 function App() {
   return (
     <Provider store={store}>
-      <NavStack<RootStackParamList>
-        screens={{
-          Form: {
-            component: FormRoute,
-          },
-          Report: {
-            component: ReportRoute,
-          },
-        }}
-      />
+      <SafeAreaProvider>
+        <SafeAreaView style={styles.container} edges={['top']}>
+          <NavStack<RootStackParamList>
+            screens={{
+              Form: {
+                component: FormRoute,
+              },
+              Report: {
+                component: ReportRoute,
+              },
+              Main: {
+                component: MainRoute,
+              },
+            }}
+          />
+        </SafeAreaView>
+      </SafeAreaProvider>
     </Provider>
   );
 }
@@ -92,6 +148,7 @@ function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#ffffff',
   },
   text: {
     flexGrow: 1,
@@ -106,8 +163,13 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   buttonContainer: {
+    flexDirection: 'row',
+    gap: 10,
     marginTop: 10,
     marginHorizontal: 10,
+  },
+  viewGrow: {
+    flexGrow: 1,
   },
   itemContainer: {
     gap: 4,

@@ -28,7 +28,7 @@ export function NavStack<T extends Record<string, object | undefined>>({
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
         {Object.entries(screens).map(([name, config]) => (
           <Stack.Screen
             key={name}

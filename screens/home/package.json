@@ -1,5 +1,5 @@
 {
-  "name": "@workspace/navigations",
+  "name": "@screens/home",
   "version": "1.0.0",
   "private": true,
   "main": "./src/index.ts",
@@ -15,8 +15,6 @@
   "peerDependencies": {
     "react": "*",
     "react-native": "*",
-    "@react-navigation/native": "*",
-    "@react-navigation/native-stack": "*",
-    "@react-navigation/bottom-tabs": "*"
+    "react-native-safe-area-context": "*"
   }
 }
