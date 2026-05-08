@@ -3,7 +3,7 @@
 1. [Quick Start](#1-quick-start)
 2. [Struktur Project](#2-struktur-project)
 3. [Aturan Development](#3-aturan-development)
-4. `[peerDependencies` vs `dependencies](#4-peerdependencies-vs-dependencies)`
+4. [peerDependencies vs dependencies](#4-peerdependencies-vs-dependencies)
 5. [Menambahkan Workspace Baru](#5-menambahkan-workspace-baru)
 6. [Menambahkan App Baru](#6-menambahkan-app-baru)
 7. [Menjalankan Project](#7-menjalankan-project)
@@ -93,7 +93,7 @@ Aturan yang **wajib** diikuti saat menambah kode baru:
 
 ---
 
-## 4. `peerDependencies` vs `dependencies`
+## 4. peerDependencies vs dependencies
 
 Aturan di monorepo ini:
 
