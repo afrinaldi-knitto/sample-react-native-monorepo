@@ -1,4 +1,18 @@
 {
   "typescript.preferences.importModuleSpecifier": "non-relative",
-  "javascript.preferences.importModuleSpecifier": "non-relative"
+  "javascript.preferences.importModuleSpecifier": "non-relative",
+  "files.associations": {
+    "*.css": "tailwindcss",
+  },
+  "tailwindCSS.classAttributes": [
+    "class",
+    "className",
+    "headerClassName"
+  ],
+  "tailwindCSS.experimental.classRegex": [
+    "className\\s*=\\s*['\"]([^'\"]*)['\"]",
+    "className\\s*=\\s*{`([^`]*)`}",
+    "tw`([^`]*)`",
+  ],
+  "tailwindCSS.classFunctions": ["styled"]
 }

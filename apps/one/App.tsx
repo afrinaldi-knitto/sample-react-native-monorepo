@@ -1,20 +1,27 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { StyleSheet, View } from 'react-native';
+import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
+import { View, Button } from 'react-native';
+import './global.css';
 import { InputForm } from '@packages/components';
+import { ProfileScreen } from './src/profile';
 
 type RootStackParamList = {
   Form: undefined;
-  Report: undefined;
-  Detail: { sourceApp: string };
+  Profile: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
+type Props = NativeStackScreenProps<RootStackParamList, 'Form'>;
 
-function FormRoute() {
+function FormRoute({navigation} : Props) {
   return (
-    <View style={styles.container}>
+    <View className='flex-1'>
+      <View className='flex-row px-[10] pt-2'>
+        <View className='flex-grow'>
+          <Button title='Profile' color={'#000000'} onPress={() => navigation.navigate('Profile')} />
+        </View>
+      </View>
       <InputForm onSubmit={() => {}} />
     </View>
   );
@@ -23,18 +30,12 @@ function FormRoute() {
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Form" component={FormRoute} />
+        <Stack.Screen name="Profile" component={ProfileScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    gap: 8,
-  },
-});
 
 export default App;
